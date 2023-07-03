@@ -1,6 +1,8 @@
-package CEOS.TherapEase.project.controller;
+package CEOS.TherapEase.project.accounts.controller;
 
-import CEOS.TherapEase.project.service.ConsultantService;
+import CEOS.TherapEase.project.accounts.dto.ConsultantLoginRequest;
+import CEOS.TherapEase.project.accounts.dto.ConsultantSignUpRequest;
+import CEOS.TherapEase.project.accounts.service.ConsultantService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
