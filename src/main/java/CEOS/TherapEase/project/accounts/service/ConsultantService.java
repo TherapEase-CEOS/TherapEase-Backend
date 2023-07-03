@@ -1,5 +1,7 @@
 package CEOS.TherapEase.project.accounts.service;
 
+import CEOS.TherapEase.project.accounts.dto.ConsultantLoginRequest;
+import CEOS.TherapEase.project.accounts.dto.ConsultantSignUpRequest;
 import org.springframework.stereotype.Service;
 
 @Service
