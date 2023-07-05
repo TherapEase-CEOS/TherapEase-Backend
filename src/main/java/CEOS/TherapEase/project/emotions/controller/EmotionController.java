@@ -22,4 +22,6 @@ public class EmotionController {
         return new EmotionResponseDto(emotionService.createEmotion(requestDto)); // 새로 만든 감정의 정보를 DTO 객체로 만들어 리턴
     }
 
+    // 감정 조회 ..?
+
 }
