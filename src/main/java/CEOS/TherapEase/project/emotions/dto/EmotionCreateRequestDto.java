@@ -13,7 +13,7 @@ import java.util.Optional;
 @NoArgsConstructor
 public class EmotionCreateRequestDto {
     @NotBlank(message = "감정은 필수입니다.")
-    private List<String> emotions;
+    private List<EmotionDto> emotion;
 
     @NotBlank(message = "감정 강도 선택은 필수입니다.")
     private Integer intensity;
