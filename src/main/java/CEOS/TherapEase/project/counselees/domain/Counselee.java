@@ -17,8 +17,10 @@ public class Counselee extends BaseTimeEntity {
     //키값
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "counseleeName", updatable = false)
-    private Long counseleeName;
+    @Column(name = "counseleeId", updatable = false)
+    private Long counseleeId;
+
+    // 내담자 이름 따로 입력해야하나? 회원가입-로그인 로직대로 되면?
 
     // 상담 시작 날짜
     @Column

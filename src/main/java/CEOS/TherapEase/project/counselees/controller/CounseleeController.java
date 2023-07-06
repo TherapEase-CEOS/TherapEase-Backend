@@ -2,7 +2,7 @@ package CEOS.TherapEase.project.counselees.controller;
 
 import CEOS.TherapEase.project.counselees.domain.Counselee;
 import CEOS.TherapEase.project.counselees.dto.CounseleeModifyRequestDto;
-import CEOS.TherapEase.project.counselees.dto.CounseleeRequestDto;
+import CEOS.TherapEase.project.counselees.dto.CounseleeCreateRequestDto;
 import CEOS.TherapEase.project.counselees.dto.CounseleeResponseDto;
 import CEOS.TherapEase.project.counselees.service.CounseleeService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class CounseleeController {
     //내담자 생성
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public CounseleeResponseDto counseleeAdd(@RequestBody CounseleeRequestDto requestDto) {   // request가 JSON으로 들어간다는 의미
+    public CounseleeResponseDto counseleeAdd(@RequestBody CounseleeCreateRequestDto requestDto) {   // request가 JSON으로 들어간다는 의미
         Counselee counselee = counseleeService.addCounselee(requestDto);
         return new CounseleeResponseDto(counselee);
     }
