@@ -3,9 +3,11 @@ package CEOS.TherapEase.project.accounts.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 public class JwtUtil {
     private static final String SECRET_KEY = "yourSecretKey"; // JWT 암호화에 사용할 시크릿 키
 

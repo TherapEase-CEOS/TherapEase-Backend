@@ -5,9 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.springframework.security.crypto.password.Password
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-//Consultant 모델 클래스를 정의한 후, 해당 클래스는 ConsultantRepository에서 사용될 수 있다.
 @Entity
 public class Consultant {
     @Id
@@ -17,16 +17,53 @@ public class Consultant {
     private String password;
     private String role;
 
-    public Consultant(){
+    private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    public void setPassword(String password) {
+        this.password = passwordEncoder.encode(password);
+    }
+
+    public boolean isPasswordMatch(String rawPassword) {
+        return passwordEncoder.matches(rawPassword, this.password);
+    }
+
+    public Consultant() {
 
     }
-    public Consultant(String username, String password, String role){
+
+    public Consultant(String username, String password, String role) {
         this.username = username;
-        this.password = password;
+        this.password = passwordEncoder.encode(password);
         this.role = role;
     }
 
+    // Getters and Setters
 
+    public long getId() {
+        return id;
+    }
 
-    // getters and setters
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }
