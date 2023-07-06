@@ -58,11 +58,11 @@ public class CounseleeController {
     //내담자 상담 완료 ?? 삭제랑 똑같이 구현?
 
     //내담자 수정
-    @PutMapping("/{postId}")
+    @PutMapping("/{counseleeId}")
     @ResponseStatus(value = HttpStatus.OK)
     public CounseleeResponseDto counseleeModify(@PathVariable Long counseleeId, @RequestBody CounseleeModifyRequestDto requestDto) {
-        Post post = counseleeService.modifyCounselee(counseleeId, requestDto);
-        return new CounseleeResponseDto(post);
+        Counselee counselee = counseleeService.modifyCounselee(counseleeId, requestDto);
+        return new CounseleeResponseDto(counselee);
     }
 
 
