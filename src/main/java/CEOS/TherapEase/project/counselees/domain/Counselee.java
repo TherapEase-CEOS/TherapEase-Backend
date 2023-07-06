@@ -30,6 +30,15 @@ public class Counselee extends BaseTimeEntity {
     @Column
     private Integer progress; // 진행 = 1, 그 외에는 0
 
+    //상담 목표
+    @Column
+    private String goal;
+
+    //상담 일정 ex. 매주 화요일 7시
+    @Column
+    private String counselingDate;
+
+
     // 내담자를 맡은 상담사
     @OneToMany
     @JoinColumn(name="counselorId")
@@ -39,6 +48,8 @@ public class Counselee extends BaseTimeEntity {
     public Counselee (String start,String progress){
         this.start = start;
         this.progress = Integer.valueOf(progress);
+        this.goal = goal;
+        this.counselingDate = counselingDate;
         this.counselor = counselor;
     }
 

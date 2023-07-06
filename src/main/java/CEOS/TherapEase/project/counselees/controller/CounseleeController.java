@@ -55,6 +55,8 @@ public class CounseleeController {
         return "성공적으로 삭제되었습니다.";
     }
 
+    //내담자 상담 완료 ?? 삭제랑 똑같이 구현?
+
     //내담자 수정
     @PutMapping("/{postId}")
     @ResponseStatus(value = HttpStatus.OK)

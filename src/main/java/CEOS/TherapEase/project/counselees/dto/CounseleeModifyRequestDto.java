@@ -9,5 +9,7 @@ public class CounseleeModifyRequestDto {
     private Long counselorId; // 맞나
     private String start;
     private Integer progress;
+    private String goal;
+    private String counselingDate;
 
 }
