@@ -1,29 +1,28 @@
 package CEOS.TherapEase.project.accounts.controller;
 
 import CEOS.TherapEase.project.accounts.dto.ConsultantLoginRequest;
+import CEOS.TherapEase.project.accounts.dto.ConsultantLoginResponse;
 import CEOS.TherapEase.project.accounts.dto.ConsultantSignUpRequest;
+import CEOS.TherapEase.project.accounts.model.Consultant;
 import CEOS.TherapEase.project.accounts.service.ConsultantService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/consultant")
+@RequestMapping("/accounts")
 public class ConsultantController {
 
     private final ConsultantService consultantService;
+
 
     public ConsultantController(ConsultantService consultantService) {
         this.consultantService = consultantService;
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/consultants/signup")
     public ResponseEntity<String> signUp(@RequestBody ConsultantSignUpRequest request) {
-        // 상담자 회원가입 처리 로직
+        // 상담사 회원가입 처리 로직
         boolean isSignUpSuccessful = consultantService.signUp(request);
         if (isSignUpSuccessful) {
             return ResponseEntity.ok("Sign up successful");
@@ -32,15 +31,15 @@ public class ConsultantController {
         }
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody ConsultantLoginRequest request) {
-        // 상담자 로그인 처리 로직
+    @PostMapping("/consultants/login")
+    public ResponseEntity<ConsultantLoginResponse> login(@RequestBody ConsultantLoginRequest request) {
+        // 상담사 로그인 처리 로직
         String token = consultantService.login(request);
         if (token != null) {
-            return ResponseEntity.ok(token);
+            ConsultantLoginResponse response = new ConsultantLoginResponse(token);
+            return ResponseEntity.ok(response);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
 }
-

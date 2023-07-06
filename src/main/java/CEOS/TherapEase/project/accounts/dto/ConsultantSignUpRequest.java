@@ -7,6 +7,7 @@ public class ConsultantSignUpRequest {
     private String username;
     private String password;
     private String email;
+    private String role;
     // ... 추가 필드 정의
 
     //Getter와 Setter 메서드
