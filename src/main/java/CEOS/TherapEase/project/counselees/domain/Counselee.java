@@ -45,12 +45,12 @@ public class Counselee extends BaseTimeEntity {
     private Account counselor;
 
     @Builder
-    public Counselee (String start,String progress){
+    public Counselee (String start,String progress,String goal, String counselingDate){
         this.start = start;
         this.progress = Integer.valueOf(progress);
         this.goal = goal;
         this.counselingDate = counselingDate;
-        this.counselor = counselor;
+        //this.counselor = counselor;
     }
 
 }
