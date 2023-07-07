@@ -25,8 +25,8 @@ public class ScheduleController {
         // JWT 토큰에서 상담자 정보 가져오기
         String role = extractRoleFromToken(token);
 
-        // 상담자인 경우에만 조회 가능
-        if (role.equals("consultant")) {
+        // 상담자 & 내담자 조회 가능
+        if (role.equals("consultant") || role.equals("counselee")) {
             // 조회 결과를 담을 Map 객체 생성
             Map<String, Object> response = new HashMap<>();
             Map<String, boolean[]> scheduleMap = new HashMap<>();
@@ -46,14 +46,14 @@ public class ScheduleController {
 
             return ResponseEntity.ok(response);
         } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access denied");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("시간표를 찾을 수 없습니다.");
         }
     }
 
     // 일정 정보 업데이트 API
     @PutMapping("/consultant")
-    public ResponseEntity<?> updateConsultantSchedule(@RequestBody Map<String, boolean[]> newSchedule,
-                                                      @RequestHeader("Authorization") String token) {
+    public ResponseEntity<Map<String, Object>> updateConsultantSchedule(@RequestBody Map<String, boolean[]> newSchedule,
+                                                                        @RequestHeader("Authorization") String token) {
         // JWT 토큰에서 상담자 정보 가져오기
         String role = extractRoleFromToken(token);
 
@@ -70,10 +70,29 @@ public class ScheduleController {
             // 최신 업데이트 날짜 설정
             latestUpdated = LocalDate.now();
 
-            return ResponseEntity.ok("Schedule updated successfully");
+            // 업데이트된 시간표를 포함한 응답 반환
+            return ResponseEntity.ok(getConsultantSchedule());
         } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access denied");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
+    }
+
+    // 상담일정표 반환
+    private Map<String, Object> getConsultantSchedule() {
+        Map<String, boolean[]> scheduleMap = new HashMap<>();
+        scheduleMap.put("sunday", schedule[0]);
+        scheduleMap.put("monday", schedule[1]);
+        scheduleMap.put("tuesday", schedule[2]);
+        scheduleMap.put("wednesday", schedule[3]);
+        scheduleMap.put("thursday", schedule[4]);
+        scheduleMap.put("friday", schedule[5]);
+        scheduleMap.put("saturday", schedule[6]);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("data", scheduleMap);
+        response.put("latestUpdated", latestUpdated.toString());
+
+        return response;
     }
 
     // JWT 토큰에서 상담자 정보 추출하는 메서드
