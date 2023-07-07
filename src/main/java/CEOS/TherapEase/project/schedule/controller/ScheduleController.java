@@ -9,6 +9,12 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+
+import javax.crypto.SecretKey;
+
 @RestController
 @RequestMapping("/schedule")
 public class ScheduleController {
@@ -97,11 +103,17 @@ public class ScheduleController {
 
     // JWT 토큰에서 상담자 정보 추출하는 메서드
     private String extractRoleFromToken(String token) {
-        // 토큰 해석 로직 구현
-        // 상담자인지 내담자인지 구분하는 role 정보 추출
+        // jwt 토큰 해석
+        SecretKey key = Keys.hmacShaKeyFor("your_secret_key".getBytes()); // jwt 서명에 사용되는 키
+        Claims claims = Jwts.parser()
+                .setSigningKey(key)
+                .parseClaimsJws(token)
+                .getBody();
 
-        // 임시로 상담자인 경우를 가정하고 "consultant" 반환
-        return "consultant";
+        // 토큰에서 role 정보 추출
+        String role = claims.get("role", String.class);
+
+        return role;
     }
 
     // 숫자로 된 요일을 문자열로 변환하는 메서드
