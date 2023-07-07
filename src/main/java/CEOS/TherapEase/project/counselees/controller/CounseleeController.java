@@ -29,7 +29,7 @@ public class CounseleeController {
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
     public List<CounseleeResponseDto> postListFind() {
-        List<Counselee> postList = counseleeService.findCounseleeList();
+        List<Counselee> counseleeList = counseleeService.findCounseleeList();
         List<CounseleeResponseDto> responseDtoList = new ArrayList<>();
 
         for (Counselee counselee : counseleeList) {    // 스트림으로 한 줄 코드로 바꿀 수 있음
