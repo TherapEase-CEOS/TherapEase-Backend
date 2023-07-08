@@ -6,8 +6,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import CEOS.TherapEase.project.accounts.dto.AccountResponseDto;
-import CEOS.TherapEase.project.accounts.dto.AccountUpdateRequestDto;
 import CEOS.TherapEase.project.accounts.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
