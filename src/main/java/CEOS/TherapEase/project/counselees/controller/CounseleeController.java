@@ -70,3 +70,9 @@ public class CounseleeController {
 
 
 }
+
+database
+이름  : 이소정
+나이 : 24
+        코드 : 23
+내담자/상담자 : 내담자
