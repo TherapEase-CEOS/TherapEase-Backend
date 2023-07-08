@@ -6,6 +6,9 @@ spring: #띄어쓰기 없음
     username: root #띄어쓰기 4칸
     password: 1234 #띄어쓰기 4칸
   jpa: #띄어쓰기 2칸
+    database: mysql   # 추가 해준 부분
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect # 추가 해준 부분
+
     hibernate: #띄어쓰기 4칸
       ddl-auto: update #띄어쓰기 6칸
     generate-ddl: true #띄어쓰기 4칸

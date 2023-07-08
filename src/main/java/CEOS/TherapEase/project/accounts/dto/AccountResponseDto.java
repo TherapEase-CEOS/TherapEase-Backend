@@ -10,19 +10,19 @@ import lombok.NoArgsConstructor;
 public class AccountResponseDto {
     private Long accountId;
     private String email;
-    private String nickname;
+    private String code;
     private String bio;
 
-    public AccountResponseDto(Long accountId, String email, String nickname, String bio) {
+    public AccountResponseDto(Long accountId, String email, String code, String bio) {
         this.accountId = accountId;
         this.email = email;
-        this.nickname = nickname;
+        this.code = code;
         this.bio = bio;
     }
     public static AccountResponseDto from(Account account) {
         return new AccountResponseDto(account.getAccountId(),
+                account.getCode(),
                 account.getEmail(),
-                account.getNickname(),
                 account.getBio());
     }
 }

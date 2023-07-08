@@ -1,4 +1,4 @@
-package CEOS.TherapEase.project.accounts.dto;
+/* package CEOS.TherapEase.project.accounts.dto;
 
 import CEOS.TherapEase.project.accounts.domain.Account;
 import lombok.AccessLevel;
@@ -42,3 +42,4 @@ public class SignUpRequestDto {
                 .build();
     }
 }
+*/
