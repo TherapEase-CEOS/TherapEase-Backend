@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 public class CounseleeCreateRequestDto {
 
     // 내담자 이름 추가해야하나?
+    private Long accountId;
 
     @NotBlank(message="상담 시작 날짜는 필수로 입력해야 합니다.")
     private String start;
