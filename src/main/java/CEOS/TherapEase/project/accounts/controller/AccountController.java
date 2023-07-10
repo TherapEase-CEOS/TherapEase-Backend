@@ -1,6 +1,7 @@
 package CEOS.TherapEase.project.accounts.controller;
 
 import CEOS.TherapEase.project.accounts.domain.Account;
+import CEOS.TherapEase.project.accounts.dto.AccountUpdateRequestDto;
 import CEOS.TherapEase.project.accounts.repository.AccountRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -13,11 +14,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import javax.crypto.SecretKey;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/accounts")
@@ -71,51 +74,7 @@ public class AccountController {
         for (Account account : accounts) {
             userCodes.put(account.getCode(), account.getCode());
         }
-
-
-        /* 계정 생성 기능 */
-        //  @PostMapping
-        // @ResponseStatus(value = HttpStatus.CREATED)
-        // public AccountResponseDto signUp(@RequestBody @Valid final SignUpRequestDto requestDto) {
-        //    Long id = accountService.signUp(requestDto);
-        //    Account findAccount = accountService.findAccountById(id);
-        //    return AccountResponseDto.from(findAccount);
-        // }
-
-        /* 계정 조회 기능 (1명) */
-        // @GetMapping("/{accountId}")
-        //  @ResponseStatus(value = HttpStatus.OK)
-        // public AccountResponseDto getAccount(@PathVariable Long accountId) {
-        //     Account findAccount = accountService.findAccountById(accountId);
-        //     return AccountResponseDto.from(findAccount);
-        // }
-
-        /* 계정 프로필 수정 */
-/*
-    @PatchMapping("/profile/{accountId}")
-    @ResponseStatus(value = HttpStatus.OK)
-    public AccountResponseDto update(@PathVariable final Long accountId, @RequestBody @Valid final AccountUpdateRequestDto requestDto) {
-        Long id = accountService.update(accountId, requestDto);
-        Account findAccount = accountService.findAccountById(id);
-        return AccountResponseDto.from(findAccount);
     }
-    */
 
 
-        /* 계정 삭제 (휴면 계정으로) */
-        //  @PatchMapping("/{accountId}")
-        //  @ResponseStatus(value = HttpStatus.OK)
-        // public String withdraw(@PathVariable long accountId) {
-        //     accountService.withdraw(accountId);
-        //     return "성공적으로 탈퇴되었습니다.";
-        // }
-
-        /* 계정 삭제 (db에서도 삭제) */
-        // @DeleteMapping("/{accountId}")
-        // @ResponseStatus(value = HttpStatus.OK)
-        // public String delete(@PathVariable long accountId) {
-        //    accountService.delete(accountId);
-        //    return "성공적으로 탈퇴가 완료되었습니다";
-        // }
     }
-}

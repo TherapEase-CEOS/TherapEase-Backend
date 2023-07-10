@@ -50,5 +50,11 @@ public class Account extends BaseTimeEntity {
         this.bio = bio;
     }
 
+    public void updateAccount(String bio, String email, String phone) {
+        this.bio = bio;
+        this.email = email;
+        this.phone = phone;
+    }
+
 
 }
