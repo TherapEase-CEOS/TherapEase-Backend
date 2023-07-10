@@ -1,5 +1,6 @@
 package CEOS.TherapEase.project.counselees.dto;
 
+import CEOS.TherapEase.project.accounts.domain.Account;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -21,4 +22,7 @@ public class CounseleeModifyRequestDto {
         this.counselingDate =counselingDate;
     }
 
+    public String getCounseleeName() {
+        return counseleeeName;
+    }
 }
