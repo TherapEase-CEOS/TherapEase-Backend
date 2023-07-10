@@ -2,9 +2,9 @@ spring: #띄어쓰기 없음
   datasource: #띄어쓰기 2칸
     driver-class-name: com.mysql.cj.jdbc.Driver #띄어쓰기 4칸
     url:
-      jdbc:mysql://localhost:3306/therapease?createDatabaseIfNotExist=true&characterEncoding=UTF-8&characterSetResults=UTF-8 #띄어쓰기 4칸
-    username: root #띄어쓰기 4칸
-    password: 1234 #띄어쓰기 4칸
+      jdbc:mysql://therapease-db.c81tznyca4ah.ap-northeast-2.rds.amazonaws.com:3306/therapease?createDatabaseIfNotExist=true&characterEncoding=UTF-8&characterSetResults=UTF-8 #띄어쓰기 4칸
+    username: therapease #띄어쓰기 4칸
+    password: therapease #띄어쓰기 4칸
   jpa: #띄어쓰기 2칸
     database: mysql   # 추가 해준 부분
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect # 추가 해준 부분
