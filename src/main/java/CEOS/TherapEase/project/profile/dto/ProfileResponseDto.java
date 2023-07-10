@@ -17,7 +17,7 @@ public class ProfileResponseDto{
         this.counselorId = counselorId;
         this.email = email;
         this.introduction = introduction;
-        this.engagement = this.engagement;
+        this.engagement = engagement;
     }
     public static ProfileResponseDto from(Profile profile) {
         return new ProfileResponseDto(profile.getCounselorId(),

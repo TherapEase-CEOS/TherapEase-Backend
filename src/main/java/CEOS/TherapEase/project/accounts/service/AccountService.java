@@ -1,7 +1,7 @@
 package CEOS.TherapEase.project.accounts.service;
 
 import CEOS.TherapEase.project.accounts.domain.Account;
-import CEOS.TherapEase.project.accounts.dto.AccountUpdateRequestDto;
+//import CEOS.TherapEase.project.accounts.dto.AccountUpdateRequestDto;
 import CEOS.TherapEase.project.accounts.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,10 +26,10 @@ public class AccountService {
     */
 
     // 이메일로 로그인하는 기능 -> 코드로 하는 기능
-   // @Transactional(readOnly = true)
-   // public Account findAccountByCode(String code){
-   //     return accountRepository.findByCode(code)
-   //             .orElseThrow(()-> new EntityNotFoundException("해당 code을 가진 게정을 찾을 수 잆습니다." +
-   //                     "code = " + code));
-   // }
+    // @Transactional(readOnly = true)
+    // public Account findAccountByCode(String code){
+    //     return accountRepository.findByCode(code)
+    //             .orElseThrow(()-> new EntityNotFoundException("해당 code을 가진 게정을 찾을 수 잆습니다." +
+    //                     "code = " + code));
+    // }
 }

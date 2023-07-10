@@ -16,18 +16,19 @@ import java.util.List;
 public class CounseleeService {
     private final CounseleeRepository counseleeRepository;
     private final AccountRepository accountRepository; // counselor 지칭
-
+    private final AccountService accountService;
     // 내담자 생성
-    public Counselee createCounselee(CounseleeCreateRequestDto requestDto) {
+    public Counselee addCounselee(CounseleeCreateRequestDto requestDto) {
         // if(existsByTitle(requestDto.getTitle())) {
         //     throw new IllegalArgumentException("이미 존재하는 게시판명입니다. " + requestDto.getTitle());
         // }
-        Account account = accountRepository.findById(requestDto.getAccountId())
+        Account counselor = accountRepository.findById(requestDto.getAccountId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상담사입니다."));
 
         return counseleeRepository.save(
                 Counselee.builder()
                         //.counseleeId(requestDto.getCounseleeId())
+                        .counseleeName((requestDto.getCounseleeName()))
                         .start(requestDto.getStart())
                         .progress(String.valueOf(requestDto.getProgress()))
                         .goal(requestDto.getGoal())
@@ -42,32 +43,25 @@ public class CounseleeService {
         return counseleeRepository.findAll();
     }
 
-    // 단일 엔티티의 존재 여부 확인하는 메서드
-    // @Transactional(readOnly = true)
-    // private boolean existsByCounseleeId(String title) {
-    //     return counseleeRepository.existsByCounseleeId(title);
-    // }
-
-    // 내담자 상세 조회
-    //@Transactional(readOnly = true)
-    //public Counselee findCounseleeById(Long id) {
-    //    return counseleeRepository.findById(id)
-    //            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 내담자입니다."));
-    //}
-
     // 내담자 수정
     public Long modifyCounselee(Long counseleeId, CounseleeModifyRequestDto requestDto) {
-        Counselee counselee = findCounseleeById(counseleeId);
-        counselee.modifyCounselee(accountRepository.findById(requestDto.getOwnerId())
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다.")));
+        Counselee counselee = findByCounseleeId(counseleeId);
+        counselee.modifyCounselee(accountRepository.findById(requestDto.getCounseleeId())
+                .orElseThrow(() -> new IllegalArgumentException("잘못된 접근입니다.")));
+        counselee.updateCounselee(requestDto);
         return counseleeId;
     }
 
     //내담자 삭제
     @Transactional
-    public void deleteCounselee(Long counseleeId) {
+    public static void removeCounselee(Long counseleeId) {
         Counselee counselee = counseleeRepository.findByCounseleeId(counseleeId)
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 접근입니다."));
         counseleeRepository.delete(counselee);
+    }
+
+    public List<Counselee> findCounseleeByCounselor(Long accountId){
+        Account account = accountService.findAccountById(accountId);
+        return accountRepository.findAllByCounselor(account);
     }
 }
