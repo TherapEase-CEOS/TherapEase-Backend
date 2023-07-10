@@ -2,6 +2,7 @@ package CEOS.TherapEase.project.counselees.service;
 
 import CEOS.TherapEase.project.accounts.domain.Account;
 import CEOS.TherapEase.project.accounts.repository.AccountRepository;
+import CEOS.TherapEase.project.accounts.service.AccountService;
 import CEOS.TherapEase.project.counselees.domain.Counselee;
 import CEOS.TherapEase.project.counselees.dto.CounseleeCreateRequestDto;
 import CEOS.TherapEase.project.counselees.dto.CounseleeModifyRequestDto;
@@ -22,7 +23,7 @@ public class CounseleeService {
         // if(existsByTitle(requestDto.getTitle())) {
         //     throw new IllegalArgumentException("이미 존재하는 게시판명입니다. " + requestDto.getTitle());
         // }
-        Account counselor = accountRepository.findById(requestDto.getAccountId())
+        Account counselor = accountRepository.findByCode(requestDto.getCounseleeId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상담사입니다."));
 
         return counseleeRepository.save(
@@ -46,7 +47,7 @@ public class CounseleeService {
     // 내담자 수정
     public Long modifyCounselee(Long counseleeId, CounseleeModifyRequestDto requestDto) {
         Counselee counselee = findByCounseleeId(counseleeId);
-        counselee.modifyCounselee(accountRepository.findById(requestDto.getCounseleeId())
+        counselee.modifyCounselee(accountRepository.findById(requestDto.getAccountId())
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 접근입니다.")));
         counselee.updateCounselee(requestDto);
         return counseleeId;

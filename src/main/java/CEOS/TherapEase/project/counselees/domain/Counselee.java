@@ -1,6 +1,7 @@
 package CEOS.TherapEase.project.counselees.domain;
 
 import CEOS.TherapEase.project.accounts.domain.Account;
+import CEOS.TherapEase.project.counselees.dto.CounseleeModifyRequestDto;
 import CEOS.TherapEase.project.global.entity.BaseTimeEntity;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import lombok.AccessLevel;
@@ -56,13 +57,13 @@ public class Counselee extends BaseTimeEntity {
         this.counselor = counselor;
     }
 
-    public void updateCounselee(CEOS.TherapEase.project.counselees.dto.CounseleeModifyRequestDto requestDto){
+    public void updateCounselee(CounseleeModifyRequestDto requestDto){
         this.counseleeName = requestDto.getCounseleeName();
         this.start= requestDto.getStart();
         this.progress = requestDto.getProgress();
         this.goal = requestDto.getGoal();
         this.counselingDate= requestDto.getCounselingDate();
-        this.counselor = requestDto.getCounselor()
+        this.counselor = requestDto.getCounselor();
     }
 
 }
