@@ -21,6 +21,8 @@ public class Counselee extends BaseTimeEntity {
     private Long counseleeId;
 
     // 내담자 이름 따로 입력해야하나? 회원가입-로그인 로직대로 되면?
+    @Column
+    private String counseleeName;
 
     // 상담 시작 날짜
     @Column
@@ -45,12 +47,22 @@ public class Counselee extends BaseTimeEntity {
     private Account counselor;
 
     @Builder
-    public Counselee (String start,String progress,String goal, String counselingDate){
+    public Counselee (String counseleeName, String start,String progress,String goal, String counselingDate, Account counselor){
+        this.counseleeName = counseleeName;
         this.start = start;
         this.progress = Integer.valueOf(progress);
         this.goal = goal;
         this.counselingDate = counselingDate;
-        //this.counselor = counselor;
+        this.counselor = counselor;
+    }
+
+    public void updateCounselee(CEOS.TherapEase.project.counselees.dto.CounseleeModifyRequestDto requestDto){
+        this.counseleeName = requestDto.getCounseleeName();
+        this.start= requestDto.getStart();
+        this.progress = requestDto.getProgress();
+        this.goal = requestDto.getGoal();
+        this.counselingDate= requestDto.getCounselingDate();
+        this.counselor = requestDto.getCounselor()
     }
 
 }

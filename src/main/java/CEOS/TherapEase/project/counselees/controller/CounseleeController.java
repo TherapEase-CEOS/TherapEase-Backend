@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class CounseleeController {
     private final CounseleeService counseleeService;
 
-    //내담자 생성
+    //내담자 생성 (post)
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public CounseleeResponseDto counseleeAdd(@RequestBody CounseleeCreateRequestDto requestDto) {   // request가 JSON으로 들어간다는 의미
@@ -38,20 +38,11 @@ public class CounseleeController {
         return responseDtoList;
     }
 
-
-    //내담자 상세 조회
-    @GetMapping("/{counseleeId}")
-    @ResponseStatus(value = HttpStatus.OK)
-    public CounseleeResponseDto counseleeFind(@PathVariable Long counseleeId) {
-        Counselee counselee = counseleeService.findCounselee(counseleeId);
-        return new CounseleeResponseDto(counselee);
-    }
-
     //내담자 삭제
     @DeleteMapping("/{counseleeId}")
     @ResponseStatus(value = HttpStatus.OK)
-    public String counseleeRemove(@PathVariable Long counseleeId, @RequestParam Long counselorId) { //헷갈
-        CounseleeService.removeCounselee(counseleeId, counselorId);
+    public String counseleeRemove(@PathVariable Long counseleeId) { //헷갈
+        CounseleeService.removeCounselee(counseleeId);
         return "성공적으로 삭제되었습니다.";
     }
 
