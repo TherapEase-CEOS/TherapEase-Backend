@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface CounseleeRepository extends JpaRepository<Counselee,Long>{
 
-    Optional<Counselee> findByCounseleeId(Long counseleeId); // counseleeId를 기준으로 내담자 조회
+    Optional<Counselee> findByCode(String code); // code를 기준으로 내담자 조회
     List<Counselee> findAllByCounselor(Account account);
 }

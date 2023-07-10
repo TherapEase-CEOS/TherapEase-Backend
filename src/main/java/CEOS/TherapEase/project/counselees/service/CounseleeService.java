@@ -23,8 +23,8 @@ public class CounseleeService {
         // if(existsByTitle(requestDto.getTitle())) {
         //     throw new IllegalArgumentException("이미 존재하는 게시판명입니다. " + requestDto.getTitle());
         // }
-        Account counselor = accountRepository.findByCode(requestDto.getCounseleeId())
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상담사입니다."));
+        //Account counselor = accountRepository.findByCode(requestDto.getAccountId())
+        //        .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상담사입니다."));
 
         return counseleeRepository.save(
                 Counselee.builder()
@@ -47,15 +47,15 @@ public class CounseleeService {
     // 내담자 수정
     public Long modifyCounselee(Long counseleeId, CounseleeModifyRequestDto requestDto) {
         Counselee counselee = findByCounseleeId(counseleeId);
-        counselee.modifyCounselee(accountRepository.findById(requestDto.getAccountId())
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 접근입니다.")));
+        //counselee.modifyCounselee(accountRepository.findById(requestDto.getAccountId())
+        //        .orElseThrow(() -> new IllegalArgumentException("잘못된 접근입니다.")));
         counselee.updateCounselee(requestDto);
         return counseleeId;
     }
 
     //내담자 삭제
     @Transactional
-    public static void removeCounselee(Long counseleeId) {
+    public void removeCounselee(Long counseleeId) {
         Counselee counselee = counseleeRepository.findByCounseleeId(counseleeId)
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 접근입니다."));
         counseleeRepository.delete(counselee);

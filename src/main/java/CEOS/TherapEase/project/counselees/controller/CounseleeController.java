@@ -42,7 +42,7 @@ public class CounseleeController {
     @DeleteMapping("/{counseleeId}")
     @ResponseStatus(value = HttpStatus.OK)
     public String counseleeRemove(@PathVariable Long counseleeId) { //헷갈
-        CounseleeService.removeCounselee(counseleeId);
+        counseleeService.removeCounselee(counseleeId);
         return "성공적으로 삭제되었습니다.";
     }
 
@@ -52,7 +52,7 @@ public class CounseleeController {
     @PutMapping("/{counseleeId}")
     @ResponseStatus(value = HttpStatus.OK)
     public CounseleeResponseDto counseleeModify(@PathVariable Long counseleeId, @RequestBody CounseleeModifyRequestDto requestDto) {
-        Counselee counselee = counseleeService.modifyCounselee(counseleeId, requestDto);
+        Counselee counselee = counseleeService.modifyCounselee(counseleeId, requestDto); //long이 맞나?
         return new CounseleeResponseDto(counselee);
     }
 
