@@ -5,7 +5,6 @@ import CEOS.TherapEase.project.accounts.repository.AccountRepository;
 import CEOS.TherapEase.project.counselees.domain.Counselee;
 import CEOS.TherapEase.project.counselees.dto.CounseleeCreateRequestDto;
 import CEOS.TherapEase.project.counselees.dto.CounseleeModifyRequestDto;
-import CEOS.TherapEase.project.counselees.dto.CounseleeRequestDto;
 import CEOS.TherapEase.project.counselees.repository.CounseleeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ public class CounseleeService {
     private final AccountRepository accountRepository; // counselor 지칭
     private final AccountService accountService;
     // 내담자 생성
-    public Counselee addCounselee(CounseleeRequestDto requestDto) {
+    public Counselee addCounselee(CounseleeCreateRequestDto requestDto) {
         // if(existsByTitle(requestDto.getTitle())) {
         //     throw new IllegalArgumentException("이미 존재하는 게시판명입니다. " + requestDto.getTitle());
         // }
